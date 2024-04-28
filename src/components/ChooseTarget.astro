@@ -1,0 +1,58 @@
+---
+interface Props {
+  authors: string[];
+  target: string;
+}
+
+const { authors, target } = Astro.props;
+---
+
+<div>
+  <h5>Who is the scrum master?</h5>
+  <div class="authors" data-target={target}>
+    {authors.map((author) => <button class="btn-author">{author}</button>)}
+  </div>
+  <script>
+    const target = document
+      .querySelector(".authors")
+      ?.getAttribute("data-target");
+
+    if (target) {
+      const buttons = document.querySelectorAll(".btn-author");
+      buttons.forEach((button) => {
+        (button as HTMLButtonElement).addEventListener("click", () => {
+          const author = button.textContent;
+
+          if (author === target) {
+            (button as HTMLButtonElement).style.backgroundColor = "green";
+            (button as HTMLButtonElement).style.color = "white";
+          } else {
+            (button as HTMLButtonElement).style.backgroundColor = "red";
+            (button as HTMLButtonElement).style.color = "white";
+          }
+        });
+      });
+    }
+  </script>
+</div>
+<style>
+  h5 {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .authors {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px;
+  }
+
+  button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+</style>

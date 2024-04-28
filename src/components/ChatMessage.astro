@@ -1,0 +1,41 @@
+---
+interface Props {
+  author: string;
+  message: string;
+  date?: string;
+}
+
+const { author, message, date } = Astro.props;
+---
+
+<div class="chat-message">
+  <div class="chat-meta">
+    <span class="chat-author">{author}</span>
+    <span class="chat-date">{date}</span>
+  </div>
+  <div class="chat-content">
+    {message}
+  </div>
+</div>
+<style>
+  .chat-message {
+    margin-bottom: 1rem;
+  }
+
+  .chat-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0rem;
+  }
+
+  .chat-author {
+    font-weight: bold;
+  }
+
+  .chat-date {
+    color: #666;
+  }
+
+  .chat-content {
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import LevelPage from "../../layouts/LevelPage.astro";
+import ChatBox from "../../components/ChatBox.astro";
+import ChooseTarget from "../../components/ChooseTarget.astro";
+import type { Code } from "astro:components";
+
+export async function getStaticPaths() {
+  const levels = await getCollection("level");
+  return levels.map((level) => ({
+    params: { slug: level.id },
+    props: level,
+  }));
+}
+type Props = CollectionEntry<"level">;
+
+const level = Astro.props;
+---
+
+<LevelPage {...level.data}>
+  <ChatBox conversation={level.data.conversation} />
+  <ChooseTarget
+    authors={[...new Set(level.data.conversation.map((c) => c.author))]}
+    target={level.data.game["scrum-master"]}
+  />
+</LevelPage>

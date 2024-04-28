@@ -1,0 +1,45 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>Welcome to the game!</h1>
+      <p>
+        "Find the scrum master" is a game where you have to find the scrum
+        master in a group of people.
+      </p>
+      <p>
+        You will be given a conversation and pick which person you think is the
+        scrum master.
+      </p>
+      <p>
+        Use your experience and knowledge of the scrum master role to make the
+        best choice.
+      </p>
+      <a class="start-game" href="/level">Play the game</a>
+    </main>
+    <Footer />
+    <style>
+      .start-game {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        margin-top: 2rem;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+      }
+    </style>
+  </body>
+</html>

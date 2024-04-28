@@ -1,0 +1,24 @@
+---
+import type { ComponentProps } from "astro/types";
+
+import ChatMessage from "./ChatMessage.astro";
+
+type ChatMessageProps = ComponentProps<typeof ChatMessage>;
+
+interface Props {
+  conversation: ChatMessageProps[];
+}
+
+const { conversation } = Astro.props;
+---
+
+<div class="chat">
+  {conversation.map((message) => <ChatMessage {...message} />)}
+</div>
+<style>
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+</style>
